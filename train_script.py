@@ -19,7 +19,9 @@ import wandb
 import numpy as np
 import torch
 import torch.nn as nn
-import os 
+import os
+from torch.nn.functional import normalize
+
 torch.cuda.empty_cache()
 wandb.init(project = "DLProject", name = f"lr-{os.environ['LEARNING_RATE']}-ep-{os.environ['EPOCHS']}-bs-{os.environ['BATCH_SIZE']}")
 wandb.config = {
@@ -66,6 +68,7 @@ class Transform_structure(object):
 
         img = np.reshape(img, (1, 400, 400))
         img = torch.from_numpy(img)
+        img = normalize(img)
         input_img = torch.cat((img, transformed_structure_tensor), 0)
         return input_img, vec
 
@@ -74,9 +77,12 @@ def double_convolution(input_conv, output_conv):
     convolution = nn.Sequential(
         nn.Conv2d(input_conv, output_conv, kernel_size=3, padding="same"),
         nn.ReLU(inplace=True),
+        nn.BatchNorm2d(output_conv),
+        nn.Dropout2d(Drop_P),
         nn.Conv2d(output_conv, output_conv, kernel_size=3, padding="same"),
         nn.ReLU(inplace=True),
-    )
+        nn.BatchNorm2d(output_conv),
+        )
     return convolution
 
 class UNet(nn.Module):
@@ -135,9 +141,10 @@ class UNet(nn.Module):
 
 # Hyperparameters
 
-LEARNING_RATE =wandb.config['learning_rate'] 
+LEARNING_RATE =wandb.config['learning_rate']
 BATCH_SIZE = wandb.config['batch_size']
 NUM_EPOCHS = wandb.config['epochs']
+Drop_P = 0.2
 
 LOAD_MODEL = False
 LOADPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.pth.tar"

@@ -2,7 +2,7 @@ import os
 
 to_add = int(input("how much to add?"))
 
-folder = "trainingimages"
+folder = "trainingimages2"
 files = os.listdir(folder)
 max_n = 0
 for f in files:

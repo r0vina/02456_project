@@ -23,7 +23,7 @@ import os
 from torch.nn.functional import normalize
 
 torch.cuda.empty_cache()
-wandb.init(project = "DLProject", name = f"lr-{os.environ['LEARNING_RATE']}-ep-{os.environ['EPOCHS']}-bs-{os.environ['BATCH_SIZE']}")
+wandb.init(project = "DLProject", name = f"lr-{os.environ['LEARNING_RATE']}-ep-{os.environ['EPOCHS']}-bs-{os.environ['BATCH_SIZE']}", entity = "02456_project")
 wandb.config = {
 	"learning_rate":float(os.environ['LEARNING_RATE']),
 	"epochs":int(os.environ['EPOCHS']),

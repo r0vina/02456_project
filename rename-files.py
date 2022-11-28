@@ -1,5 +1,7 @@
 import os
 
+to_add = int(input("how much to add?"))
+
 folder = "trainingimages"
 files = os.listdir(folder)
 max_n = 0
@@ -12,7 +14,7 @@ for f in files:
         print(f"deleted this loser {f}")
         os.remove(f"{folder}/{f}")
         break
-    new_nr = int(nr) + 2400
+    new_nr = int(nr) + to_add
     os.rename(f"{folder}/{f}", f"{folder}/img_{new_nr}.jpeg")
 
 

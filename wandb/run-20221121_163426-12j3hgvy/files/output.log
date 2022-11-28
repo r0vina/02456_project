@@ -1,0 +1,16 @@
+
+Epoch 1, batch 0: loss = 0.43578553199768066
+Epoch 1, batch 1: loss = 0.4383682608604431
+Epoch 1, batch 2: loss = 0.4525001049041748
+Traceback (most recent call last):
+  File "/zhome/6a/c/155614/DLProject/02456_project/train_script.py", line 273, in <module>
+    training()
+  File "/zhome/6a/c/155614/DLProject/02456_project/train_script.py", line 215, in training
+    loss.backward()
+  File "/zhome/6a/c/155614/dl_env/lib/python3.10/site-packages/torch/_tensor.py", line 487, in backward
+    torch.autograd.backward(
+  File "/zhome/6a/c/155614/dl_env/lib/python3.10/site-packages/torch/autograd/__init__.py", line 197, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+  File "/zhome/6a/c/155614/dl_env/lib/python3.10/site-packages/wandb/wandb_torch.py", line 282, in <lambda>
+    handle = var.register_hook(lambda grad: _callback(grad, log_track))
+KeyboardInterrupt

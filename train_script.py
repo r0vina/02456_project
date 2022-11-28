@@ -221,7 +221,7 @@ def training():
             total_loss.append(loss_np)
             epoch_loss.append(loss_np)
             wandb.log({"loss":loss})
-            wandb.watch(model)
+    #        wandb.watch(model)
             # Print loss
             print(f"Epoch {epoch_nr}, batch {i}: loss = {float(loss)}")
 

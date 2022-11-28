@@ -1,0 +1,137 @@
+{
+    "os": "Linux-3.10.0-1160.80.1.el7.x86_64-x86_64-with-glibc2.17",
+    "python": "3.10.7",
+    "heartbeatAt": "2022-11-21T15:34:27.537997",
+    "startedAt": "2022-11-21T15:34:26.656062",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/zhome/6a/c/155614/DLProject/02456_project/train_script.py",
+    "codePath": "train_script.py",
+    "git": {
+        "remote": "git@github.com:r0vina/02456_project.git",
+        "commit": "3d802ff8a0253f609a3bb4dc9efc567939ca3731"
+    },
+    "email": "rvnagale@gmail.com",
+    "root": "/zhome/6a/c/155614/DLProject/02456_project",
+    "host": "n-62-30-1",
+    "username": "s204091",
+    "executable": "/zhome/6a/c/155614/dl_env/bin/python3",
+    "cpu_count": 20,
+    "cpu_count_logical": 20,
+    "cpu_freq": {
+        "current": 1458.3021999999999,
+        "min": 1200.0,
+        "max": 3300.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 1199.865,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1315.869,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1399.023,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1199.865,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1199.865,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1199.707,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1200.341,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1200.024,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1199.865,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1200.024,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1199.389,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1208.752,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 2599.841,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 2899.926,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1202.404,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1199.23,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1299.047,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1283.496,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 1495.666,
+            "min": 1200.0,
+            "max": 3300.0
+        },
+        {
+            "current": 2199.304,
+            "min": 1200.0,
+            "max": 3300.0
+        }
+    ],
+    "disk": {
+        "total": 71.96788787841797,
+        "used": 5.255332946777344
+    },
+    "memory": {
+        "total": 125.36462783813477
+    }
+}

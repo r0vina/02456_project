@@ -297,13 +297,13 @@ def training():
 
         # test on validation set
         val_loss = []
-        if epoch % 50 == 0:
+        if epoch % 1 == 0:
             model.eval()
             
             for i, (val_feature, val_y) in enumerate(validation_loader):
                 # Dataload. Send to device.
                 val_feature, val_y = val_feature.float(), val_y.float()
-                #val_feature, val_y = feature.to(device), y.to(device)
+                val_feature, val_y = val_feature.to(device), val_y.to(device)
 
                 # Data to model
                 val_out = model(val_feature)
@@ -328,7 +328,7 @@ def training():
     for i, (test_feature, test_y) in enumerate(test_loader):
         # Dataload. Send to device.
         test_feature, test_y = test_feature.float(), test_y.float()
-        #val_feature, val_y = feature.to(device), y.to(device)
+        test_feature, test_y = test_feature.to(device), test_y.to(device)
         
         start = time.time()
 

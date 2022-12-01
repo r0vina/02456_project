@@ -309,7 +309,7 @@ def training():
                 val_out = model(val_feature)
 
                 # Calculate loss, do backpropagation and step optimizer
-                val_losses = loss_func(val_out, val_y)
+                val_loss = loss_func(val_out, val_y)
 
                 # Save loss
                 val_loss_np = val_loss.detach().cpu()

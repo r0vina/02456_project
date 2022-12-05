@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import scipy as scp
 import torch
 from torch.utils.data import Dataset, DataLoader, TensorDataset
-from torch.utils.data.sampler import SubsetRandomSampler
+from torch.utils.data.sampler import SubsetRandomSampler, SequentialSampler
 from torchvision import transforms, utils
 import matplotlib.pyplot as plt
 import torch.optim
@@ -157,7 +157,7 @@ NUM_EPOCHS = wandb.config['epochs']
 SCALE_SIZE = wandb.config['scale_size']
 Drop_P = 0.2
 
-LOAD_MODEL = False
+LOAD_MODEL = True
 LOADPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.pth.tar"
 SAVEPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.pth.tar"
 LOSS_PATH = f"loss_array_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.npy"
@@ -185,12 +185,12 @@ def training():
 
     test_split = 0.2
     validation_split = 0.1
-    shuffle_dataset = True
+    shuffle_dataset = False
     random_seed = 42
 
     # Creating data indices for training and validation splits:
     dataset_size = len(transformed_dataset)
-    indices = list(range(dataset_size))
+    indices = list(range(800))
     train_test_split = int(np.floor(test_split * dataset_size))
     train_val_split = int(np.floor(validation_split * dataset_size))
 
@@ -205,7 +205,8 @@ def training():
     # Creating PT data samplers and loaders:
     train_sampler = SubsetRandomSampler(train_indices)
     valid_sampler = SubsetRandomSampler(val_indices)
-    test_sampler = SubsetRandomSampler(test_indices)
+    test_indices = list(range(800))
+    test_sampler = SequentialSampler(test_indices)
 
     train_loader = torch.utils.data.DataLoader(transformed_dataset, batch_size=BATCH_SIZE, 
                                                     sampler=train_sampler)
@@ -241,6 +242,7 @@ def training():
 
     # Training loop
     for epoch in range(NUM_EPOCHS):
+        break
         # Training mode initialized
         model.train()
 
@@ -295,7 +297,6 @@ def training():
                 'epoch': epoch_nr,
                 'loss': loss,
                 'total_loss': total_loss,
-                'loss_pr_epoch': loss_pr_epoch
             }, f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep60of{NUM_EPOCHS}.pth.tar")
 
         # test on validation set
@@ -328,6 +329,7 @@ def training():
     model.eval()
     test_losses= []
     cnt = 0
+    y_out = []
     for i, (test_feature, test_y) in enumerate(test_loader):
         # Dataload. Send to device.
         test_feature, test_y = test_feature.float(), test_y.float()
@@ -349,13 +351,13 @@ def training():
         test_loss_np = test_loss_np.numpy()
         test_losses.append(test_loss_np)
         wandb.log({"test_loss": test_loss_np})
-
-        if cnt % 10 == 0:
-            torch.save(test_out, f"{store_folder}/{i}_out.pt")
-            torch.save(test_y, f"{store_folder}/{i}_y.pt")
+        y_out.append(test_out.detach().cpu().numpy())
+        #if cnt % 10 == 0:
+        #torch.save(test_out, f"{store_folder}/{i}_out.pt")
+        #torch.save(test_y, f"{store_folder}/{i}_y.pt")
 
         cnt += 1
-
+    np.save("yout", y_out)
     # Save average loss for each epoch
     mean_test_loss = np.mean(test_losses)
     print(f"Mean loss for validation {mean_test_loss}")

@@ -144,8 +144,7 @@ class UNet(nn.Module):
 
         # Apply final conv3d layer and sigmoid
         y = self.out(y)
-        y_out = torch.sigmoid(y)
-
+        y_out = y
         return y_out
 
 
@@ -158,9 +157,9 @@ SCALE_SIZE = wandb.config['scale_size']
 Drop_P = 0.2
 
 LOAD_MODEL = False
-LOADPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.pth.tar"
-SAVEPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.pth.tar"
-LOSS_PATH = f"loss_array_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.npy"
+LOADPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}-ss{SCALE_SIZE}.pth.tar"
+SAVEPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}-ss{SCALE_SIZE}.pth.tar"
+LOSS_PATH = f"loss_array_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}-ss{SCALE_SIZE}.npy"
 
 def training():
     # Parameters

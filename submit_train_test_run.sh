@@ -19,10 +19,10 @@ module load cuda/11.7
 
 # activate the virtual environment
 source ../dl_env/bin/activate
-export LEARNING_RATE=0.005
-export BATCH_SIZE=2
-export EPOCHS=35
-export SCALE_SIZE=0.001
+export LEARNING_RATE=0.001
+export BATCH_SIZE=4
+export EPOCHS=50
+export SCALE_SIZE=0.05
 #export CUDA_VISIBILE_DEVICES=0
 
-python3 02456_project/train_script.py
+python3 02456_project/train_script_run.py

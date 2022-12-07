@@ -144,7 +144,7 @@ class UNet(nn.Module):
 
         # Apply final conv3d layer and sigmoid
         y = self.out(y)
-        y_out = torch.sigmoid(y)
+        y_out = y
 
         return y_out
 
@@ -158,7 +158,7 @@ SCALE_SIZE = wandb.config['scale_size']
 Drop_P = 0.2
 
 LOAD_MODEL = True
-LOADPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.pth.tar"
+LOADPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}-ss{SCALE_SIZE}.pth.tar"
 SAVEPATH = f"model_hpc_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.pth.tar"
 LOSS_PATH = f"loss_array_ba{BATCH_SIZE}-lr{LEARNING_RATE}-ep{NUM_EPOCHS}.npy"
 
@@ -190,7 +190,7 @@ def training():
 
     # Creating data indices for training and validation splits:
     dataset_size = len(transformed_dataset)
-    indices = list(range(800))
+    indices = list(range(dataset_size))
     train_test_split = int(np.floor(test_split * dataset_size))
     train_val_split = int(np.floor(validation_split * dataset_size))
 
@@ -357,7 +357,7 @@ def training():
         #torch.save(test_y, f"{store_folder}/{i}_y.pt")
 
         cnt += 1
-    np.save("yout", y_out)
+    np.save("yout_goodmodel", y_out)
     # Save average loss for each epoch
     mean_test_loss = np.mean(test_losses)
     print(f"Mean loss for validation {mean_test_loss}")

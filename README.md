@@ -36,3 +36,5 @@ The repository structure is as follows:
 ├── .gitignore
 └── README.md
 ```
+
+Data is accesible on Google drive: https://drive.google.com/drive/folders/1Nl0ThLbXHwq59G8rAe5zgxeDpUX8T3nu?usp=share_link
